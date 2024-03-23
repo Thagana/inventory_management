@@ -5,5 +5,5 @@ export interface Product {
     quantity: number;
     dateAdded: string;
     availability: string;
-    categoryID: string;
+    categoryID: number;
 }

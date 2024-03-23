@@ -1,11 +1,14 @@
 import { Sequelize } from 'sequelize-typescript';
 import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
+import { IDatabaseConfigAttributes } from 'src/interface/dot-env.interface';
+import { getURI } from './utils';
+import { Product } from 'src/products/products.entity';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,
     useFactory: async () => {
-        let config;
+        let config: IDatabaseConfigAttributes;
         switch (process.env.NODE_ENV) {
         case DEVELOPMENT:
            config = databaseConfig.development;
@@ -19,8 +22,18 @@ export const databaseProviders = [{
         default:
            config = databaseConfig.development;
         }
-        const sequelize = new Sequelize(config);
-        sequelize.addModels(['models goes here']);
+        
+        const uri = getURI(config);
+        
+        const sequelize = new Sequelize(uri, {
+         dialectOptions: {
+           ssl: {
+              require: true,
+              rejectUnauthorized: false,
+           },
+        },
+     });
+        sequelize.addModels([Product]);
         await sequelize.sync();
         return sequelize;
     },
