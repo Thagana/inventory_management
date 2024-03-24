@@ -3,7 +3,8 @@ import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { IDatabaseConfigAttributes } from 'src/interface/dot-env.interface';
 import { getURI } from './utils';
-import { Product } from 'src/products/products.entity';
+import { Product } from 'src/products/entities/products.entity';
+import { Category } from 'src/products/entities/categories.entity';
 
 export const databaseProviders = [{
     provide: SEQUELIZE,
@@ -33,7 +34,7 @@ export const databaseProviders = [{
            },
         },
      });
-        sequelize.addModels([Product]);
+        sequelize.addModels([Product, Category]);
         await sequelize.sync();
         return sequelize;
     },
