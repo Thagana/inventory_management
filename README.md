@@ -15,7 +15,7 @@ The project has three branches
 - main - production ready environment where the application is ready for customers.
 
 ### Packages 
-- uuid - for creading unique ID
+- uuid - for creating unique ID
 - Nestjs - Nodejs backend framework
 
 
