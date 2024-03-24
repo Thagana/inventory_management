@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { PRODUCT_REPOSITORY } from 'src/core/constants';
+import { PRODUCT_REPOSITORY } from '../../core/constants';
 import { ProductDto } from '../dto/products.dto';
 import { Product } from '../entities/products.entity'
 import { uuid } from 'uuidv4';

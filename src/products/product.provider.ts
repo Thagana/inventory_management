@@ -1,4 +1,4 @@
-import { PRODUCT_REPOSITORY } from 'src/core/constants';
+import { PRODUCT_REPOSITORY } from '../core/constants';
 import { Product } from './entities/products.entity';
 
 export const productProviders = [{
